@@ -1,3 +1,4 @@
+package ePuntual.visitor;
 import java.util.*;
 import java.io.*;
 import java.io.*;
@@ -6,6 +7,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import com.sun.java.swing.plaf.windows.*;
 
+import ePuntual.builder.BuilderFactory;
+import ePuntual.builder.UIBuilder;
+import ePuntual.builder.UIDirector;
+import ePuntual.iterator.AllOrders;
 import jdk.nashorn.internal.runtime.ListAdapter;
 
 public class OrderManager extends JFrame {
@@ -195,91 +200,80 @@ public class OrderManager extends JFrame {
   }
   public JComboBox getOrderTypeCtrl() {
 	    return cmbOrderType;
-	  }
+  }
 
-	  public void displayNewUI(JPanel panel) {
-	    orderCriteria.removeAll();
-	    orderCriteria.add(panel);
-	    orderCriteria.validate();
-	    validate();
-	  }
+  public void displayNewUI(JPanel panel) {
+	   orderCriteria.removeAll();
+	   orderCriteria.add(panel);
+	   orderCriteria.validate();
+	   validate();
+  }
 
 
 } // End of class OrderManager
 
 class ButtonHandler implements ActionListener {
-  OrderManager objOrderManager;
-  UIBuilder builder;
-  ArrayList <Order> lista = new ArrayList();
-  public void actionPerformed(ActionEvent e) {
-    String totalResult = null;
+	OrderManager objOrderManager;
+	UIBuilder builder;
+	AllOrders iterador = new AllOrders();
+  
+	public void actionPerformed(ActionEvent e) {
+		String totalResult = null;
 
-    if (e.getActionCommand().equals(OrderManager.EXIT)) {
-      System.exit(1);
-    }
-    if (e.getSource() == objOrderManager.getOrderTypeCtrl()) {
-    	//System.out.println("funciona");
-        String selection = objOrderManager.getOrderType();
+		if (e.getActionCommand().equals(OrderManager.EXIT)) {
+	      System.exit(1);
+	    }
+	    if (e.getSource() == objOrderManager.getOrderTypeCtrl()) {
+	    	//System.out.println("funciona");
+	        String selection = objOrderManager.getOrderType();
+	
+	        if (selection.equals("") == false) {
+	          BuilderFactory factory = new BuilderFactory();
+	          //create an appropriate builder instance
+	          builder = factory.getUIBuilder(selection);
+	          //configure the director with the builder
+	          UIDirector director = new UIDirector(builder);
+	          //director invokes different builder
+	          // methods
+	          director.build();
+	          //get the final build object
+	          JPanel UIObj = builder.getOrderUI();
+	          objOrderManager.displayNewUI(UIObj);
+	        }
+	      }
+	    if (e.getActionCommand().equals(OrderManager.CREATE_ORDER)) { 
+	      
+	      //Create the order
+	      Order order = builder.createOrder();
+	      String type = objOrderManager.getOrderType();
+	      
+	
+	      //Get the Visitor  
+	      OrderVisitor visitor = objOrderManager.getOrderVisitor();
 
-        if (selection.equals("") == false) {
-          BuilderFactory factory = new BuilderFactory();
-          //create an appropriate builder instance
-          builder = factory.getUIBuilder(selection);
-          //configure the director with the builder
-          UIDirector director = new UIDirector(builder);
-          //director invokes different builder
-          // methods
-          director.build();
-          //get the final build object
-          JPanel UIObj = builder.getOrderUI();
-          objOrderManager.displayNewUI(UIObj);
-        }
-      }
-    if (e.getActionCommand().equals(OrderManager.CREATE_ORDER)
-        ) { 
-      
-      //Create the order
-      Order order = builder.createOrder();
-      String type = objOrderManager.getOrderType();
-      lista.add(order);
+	      // accept the visitor instance
 
-      
-      //Get the Visitor  
-      OrderVisitor visitor =
-        objOrderManager.getOrderVisitor();
-      	AllOrders iterador;
-      
-      
-      	
-      // accept the visitor instance
-      	
-      
-      order.accept(visitor);
-      objOrderManager.setTotalValue(
-        " Order Created Successfully");
-    }
-
-    if (e.getActionCommand().equals(OrderManager.GET_TOTAL)) {
-      //Get the Visitor
-      OrderVisitor visitor =
-        objOrderManager.getOrderVisitor();
-      totalResult = new Double(
-                      visitor.getOrderTotal()).toString();
-      totalResult = " Orders Total = " + totalResult;
-      objOrderManager.setTotalValue(totalResult);
-    }
-    
-
-    
-    
-  }
-
-
-  public ButtonHandler() {
-  }
-  public ButtonHandler(OrderManager inObjOrderManager) {
-    objOrderManager = inObjOrderManager;
-  }
+	      order.accept(visitor);
+	      iterador.addOrder(order);
+	      objOrderManager.setTotalValue("Order Created Successfully");
+	    }
+	
+	    if (e.getActionCommand().equals(OrderManager.GET_TOTAL)) {
+	      //Get the Visitor
+	      OrderVisitor visitor = objOrderManager.getOrderVisitor();
+	      totalResult = new Double(visitor.getOrderTotal(this.iterador)).toString();
+	      totalResult = " Orders Total = " + totalResult;
+	      objOrderManager.setTotalValue(totalResult);
+	    }
+	    
+	  }
+	
+	  public ButtonHandler() {
+	  }
+	  
+	  public ButtonHandler(OrderManager inObjOrderManager) {
+	    objOrderManager = inObjOrderManager;
+	  }
 
 } // End of class ButtonHandler
 

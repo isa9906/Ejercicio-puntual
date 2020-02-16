@@ -1,4 +1,5 @@
-public class NonCaliforniaOrder implements Order {
+package ePuntual.visitor;
+public class NonCaliforniaOrder extends Order {
   private double orderAmount;
 
   public NonCaliforniaOrder() {

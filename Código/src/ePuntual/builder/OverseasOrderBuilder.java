@@ -1,9 +1,13 @@
+package ePuntual.builder;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import ePuntual.visitor.CaliforniaOrder;
+import ePuntual.visitor.Order;
 
 public class OverseasOrderBuilder extends UIBuilder {
 	private JLabel lblOrderAmount, lblSH;

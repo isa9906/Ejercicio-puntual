@@ -1,4 +1,5 @@
-public class CaliforniaOrder implements Order {
+package ePuntual.visitor;
+public class CaliforniaOrder extends Order {
   private double orderAmount;
   private double additionalTax;
 

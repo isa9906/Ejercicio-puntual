@@ -1,4 +1,5 @@
-public class OverseasOrder implements Order {
+package ePuntual.visitor;
+public class OverseasOrder extends Order {
   private double orderAmount;
   private double additionalSH;
 

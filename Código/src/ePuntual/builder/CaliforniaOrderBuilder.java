@@ -1,19 +1,23 @@
+package ePuntual.builder;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-public class NonCaliforniaOrderBuilder extends UIBuilder {
-	private JLabel lblOrderAmount;
-	private JTextField txtOrderAmount;
+import ePuntual.visitor.CaliforniaOrder;
+import ePuntual.visitor.Order;
+
+public class CaliforniaOrderBuilder extends UIBuilder {
+	private JLabel lblOrderAmount, lblTax;
+	private JTextField txtOrderAmount, txtTax;
 	
 	
 	public void addUIControls() {
 		orderUI=new JPanel();
 		lblOrderAmount = new JLabel("Order Amount: ");
+		lblTax= new JLabel ("Additional Tax: ");
 		txtOrderAmount= new JTextField(20);
+		txtTax= new JTextField(20);
 		
 		
 		
@@ -23,7 +27,8 @@ public class NonCaliforniaOrderBuilder extends UIBuilder {
 	    gbc.anchor = GridBagConstraints.WEST;
 	    orderUI.add(lblOrderAmount);
 	    orderUI.add(txtOrderAmount);
-
+	    orderUI.add(lblTax);
+	    orderUI.add(txtTax);
 	    
 	    gbc.insets.top = 5;
 	    gbc.insets.bottom = 5;
@@ -33,29 +38,40 @@ public class NonCaliforniaOrderBuilder extends UIBuilder {
 	    gbc.gridx = 0;
 	    gbc.gridy = 0;
 	    gridbag.setConstraints(lblOrderAmount, gbc);
-	    
+	    gbc.gridx = 0;
+	    gbc.gridy = 1;
+	    gridbag.setConstraints(lblTax, gbc);
 	    
 
 	    gbc.anchor = GridBagConstraints.WEST;
 	    gbc.gridx = 1;
 	    gbc.gridy = 0;
 	    gridbag.setConstraints(txtOrderAmount, gbc);
-	    
+	    gbc.gridx = 1;
+	    gbc.gridy = 1;
+	    gridbag.setConstraints(txtTax, gbc);
 	    
 	}
 	public  void initialize() {
 		txtOrderAmount.setText("Enter Order Amount");
-		
+		txtTax.setText("Enter Addition tax");
 	}
 	public String getTxtOrderAmount() {
 		return txtOrderAmount.getText();
 	}
 	
-	@Override
+	public String getTxtTax() {
+		return txtTax.getText();
+	}
 	public Order createOrder() {
 		double amount = Double.parseDouble(getTxtOrderAmount());
-		orden = new NonCaliforniaOrder(amount);
+		double tax= Double.parseDouble(getTxtTax());
+		orden = new CaliforniaOrder(amount, tax);
 		return orden;
 		
 	}
+	
+	
+	
+	
 }
