@@ -20,6 +20,7 @@ public class OrderManager extends JFrame {
   public static final String CREATE_ORDER = "Create Order";
   public static final String EXIT = "Exit";
   public static final String CA_ORDER = "California Order";
+  public static final String CO_ORDER = "Colombian Order";
   public static final String NON_CA_ORDER = 
     "Non-California Order";
 
@@ -44,7 +45,7 @@ public class OrderManager extends JFrame {
     cmbOrderType.addItem(OrderManager.CA_ORDER);
     cmbOrderType.addItem(OrderManager.NON_CA_ORDER);
     cmbOrderType.addItem(OrderManager.OVERSEAS_ORDER);
-
+    cmbOrderType.addItem(OrderManager.CO_ORDER);
     
    
 

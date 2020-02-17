@@ -12,6 +12,8 @@ public class BuilderFactory {
 			builder = new NonCaliforniaOrderBuilder();
 		}else if (str.equals(OrderManager.OVERSEAS_ORDER)) {
 			builder = new NonCaliforniaOrderBuilder();
+		}else if (str.equals(OrderManager.CO_ORDER)) {
+			builder = new NonCaliforniaOrderBuilder();
 		}
 		return builder;
 	}
