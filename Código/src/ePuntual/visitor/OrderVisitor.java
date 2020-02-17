@@ -3,7 +3,7 @@ import java.util.*;
 
 import ePuntual.iterator.AllOrders;
 
-class OrderVisitor implements VisitorInterface {
+public class OrderVisitor implements VisitorInterface {
 
   public OrderVisitor() {
 	  
@@ -18,13 +18,4 @@ class OrderVisitor implements VisitorInterface {
 	  inp_order.setValue(inp_order.getOrderAmount() +inp_order.getAdditionalSH());
   }
 
-  
- public double getOrderTotal(AllOrders iterador) {
-	 double total = 0;
-	 while(iterador.hasNext()) {
-		 Order order = iterador.next();
-		 total = total +order.getValue();
-	 }
-	 return total;
- }
 }

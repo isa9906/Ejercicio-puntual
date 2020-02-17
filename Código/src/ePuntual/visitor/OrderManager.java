@@ -244,16 +244,7 @@ class ButtonHandler implements ActionListener {
 	    if (e.getActionCommand().equals(OrderManager.CREATE_ORDER)) { 
 	      
 	      //Create the order
-	      Order order = builder.createOrder();
-	      String type = objOrderManager.getOrderType();
-	      
-	
-	      //Get the Visitor  
-	      OrderVisitor visitor = objOrderManager.getOrderVisitor();
-
-	      // accept the visitor instance
-
-	      order.accept(visitor);
+	      Order order = builder.createOrder();    
 	      iterador.addOrder(order);
 	      objOrderManager.setTotalValue("Order Created Successfully");
 	    }
@@ -261,7 +252,7 @@ class ButtonHandler implements ActionListener {
 	    if (e.getActionCommand().equals(OrderManager.GET_TOTAL)) {
 	      //Get the Visitor
 	      OrderVisitor visitor = objOrderManager.getOrderVisitor();
-	      totalResult = new Double(visitor.getOrderTotal(this.iterador)).toString();
+	      totalResult = new Double(iterador.getOrderTotal(visitor)).toString();
 	      totalResult = " Orders Total = " + totalResult;
 	      objOrderManager.setTotalValue(totalResult);
 	    }

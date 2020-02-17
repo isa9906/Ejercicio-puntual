@@ -8,12 +8,13 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 
 import ePuntual.visitor.Order;
+import ePuntual.visitor.OrderVisitor;
 
 public class AllOrders implements IteratorInterface {
 	
 	private ArrayList<Order> ordenes;
-	int apunta=0; //Apunta a la posición en donde se encuentra el siguiente (next)
-	
+	private int apunta=0; //Apunta a la posición en donde se encuentra el siguiente (next)
+	private double total;
 	public AllOrders (){
 		initialize();
 	}
@@ -39,6 +40,7 @@ public class AllOrders implements IteratorInterface {
 	@Override
 	public void initialize() {
 		this.ordenes = new ArrayList<Order>();
+		this.total = 0;
 	}
 	@Override
 	public Order elementAt(int i) {
@@ -82,5 +84,13 @@ public class AllOrders implements IteratorInterface {
 		this.ordenes.remove(size-1);
 	}
 	
+	public double getOrderTotal(OrderVisitor visitor) {
+		 while(this.hasNext()) {
+			 Order order = this.next();
+			 order.accept(visitor);
+			 total = total +order.getValue();
+		 }
+		 return total;
+	 }
 	
 }
