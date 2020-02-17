@@ -1,4 +1,4 @@
-package ePuntual.visitor;
+package ePuntual.presentacion;
 import java.util.*;
 import java.io.*;
 import java.io.*;
@@ -11,6 +11,8 @@ import ePuntual.builder.BuilderFactory;
 import ePuntual.builder.UIBuilder;
 import ePuntual.builder.UIDirector;
 import ePuntual.iterator.AllOrders;
+import ePuntual.visitor.Order;
+import ePuntual.visitor.OrderVisitor;
 import jdk.nashorn.internal.runtime.ListAdapter;
 
 public class OrderManager extends JFrame {
@@ -35,6 +37,7 @@ public class OrderManager extends JFrame {
   
   public OrderManager() {
     super("Visitor Pattern - Example");
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     //Create the visitor instance
     objVisitor = new OrderVisitor();
@@ -164,30 +167,17 @@ public class OrderManager extends JFrame {
 
     contentPane.add(buttonPanel, BorderLayout.NORTH);
     contentPane.add(panel, BorderLayout.CENTER);
-    try {
+    /*try {
       UIManager.setLookAndFeel(new WindowsLookAndFeel());
-      SwingUtilities.updateComponentTreeUI(
-        OrderManager.this);
+      SwingUtilities.updateComponentTreeUI(OrderManager.this);
     } catch (Exception ex) {
       System.out.println(ex);
-    }
+    }*/
+    
+    setLocationRelativeTo(null);
 
   }
 
-  public static void main(String[] args) {
-    JFrame frame = new OrderManager();
-
-    frame.addWindowListener(new WindowAdapter() {
-          public void windowClosing(WindowEvent e) {
-            System.exit(0);
-          }
-        }
-                           );
-
-    //frame.pack();
-    frame.setSize(500, 400);
-    frame.setVisible(true);
-  }
 
   public void setTotalValue(String msg) {
     lblTotalValue.setText(msg);
@@ -215,7 +205,7 @@ public class OrderManager extends JFrame {
 class ButtonHandler implements ActionListener {
 	OrderManager objOrderManager;
 	UIBuilder builder;
-	AllOrders iterador = new AllOrders();
+	AllOrders iterador = AllOrders.getInstance();
   
 	public void actionPerformed(ActionEvent e) {
 		String totalResult = null;

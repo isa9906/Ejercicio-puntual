@@ -1,6 +1,6 @@
 package ePuntual.builder;
 
-import ePuntual.visitor.OrderManager;
+import ePuntual.presentacion.OrderManager;
 
 public class BuilderFactory {
 	
@@ -11,7 +11,7 @@ public class BuilderFactory {
 		} else if (str.equals(OrderManager.NON_CA_ORDER)) {
 			builder = new NonCaliforniaOrderBuilder();
 		}else if (str.equals(OrderManager.OVERSEAS_ORDER)) {
-			builder = new NonCaliforniaOrderBuilder();
+			builder = new OverseasOrderBuilder();
 		}
 		return builder;
 	}

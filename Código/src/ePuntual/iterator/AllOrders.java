@@ -12,10 +12,17 @@ import ePuntual.visitor.OrderVisitor;
 
 public class AllOrders implements IteratorInterface {
 	
-	private ArrayList<Order> ordenes;
+	public ArrayList<Order> ordenes;
 	private int apunta=0; //Apunta a la posición en donde se encuentra el siguiente (next)
 	private double total;
-	public AllOrders (){
+	
+	private static AllOrders instance = new AllOrders();
+	
+	public static AllOrders getInstance() {
+		return instance;
+	}
+	
+	private AllOrders (){
 		initialize();
 	}
 	
@@ -54,12 +61,19 @@ public class AllOrders implements IteratorInterface {
 	}
 
 	@Override
-	public boolean addOrder(Order order, int i) {
+	public boolean addOrder(Order order, int i, double valorAnterior) {
 		if(i>this.ordenes.size() || i<0) {
 			return false;
 		}
 		else {
 			this.ordenes.add(i, order);
+			//Si la orden ya estaba liquidada, 
+			//el valor de total de todas las ordenes debe ser recalculado
+			if(order.getValue()!=-1) {
+				order.accept(new OrderVisitor()); //se calcula de nuevo
+				//se resta el valor anterior y se suma el nuevo valor de la orden
+				this.total = this.total - valorAnterior + order.getValue(); 
+			}
 		}
 		return true;
 	}
@@ -92,5 +106,9 @@ public class AllOrders implements IteratorInterface {
 		 }
 		 return total;
 	 }
+	
+	public ArrayList<Order> getData(){
+		return this.ordenes;
+	}
 	
 }

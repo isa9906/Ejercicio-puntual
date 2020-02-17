@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 
 import ePuntual.visitor.CaliforniaOrder;
 import ePuntual.visitor.Order;
+import ePuntual.visitor.OverseasOrder;
 
 public class OverseasOrderBuilder extends UIBuilder {
 	private JLabel lblOrderAmount, lblSH;
@@ -68,7 +69,7 @@ public class OverseasOrderBuilder extends UIBuilder {
 	public Order createOrder() {
 		double amount = Double.parseDouble(getTxtOrderAmount());
 		double sh= Double.parseDouble(getTxtSH());
-		orden = new CaliforniaOrder(amount, sh);
+		orden = new OverseasOrder(amount, sh);
 		return orden;
 		
 	}

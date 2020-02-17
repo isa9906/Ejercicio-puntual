@@ -50,8 +50,9 @@ public class CaliforniaOrderBuilder extends UIBuilder {
 	    gbc.gridx = 1;
 	    gbc.gridy = 1;
 	    gridbag.setConstraints(txtTax, gbc);
-	    
+
 	}
+	
 	public  void initialize() {
 		txtOrderAmount.setText("Enter Order Amount");
 		txtTax.setText("Enter Addition tax");

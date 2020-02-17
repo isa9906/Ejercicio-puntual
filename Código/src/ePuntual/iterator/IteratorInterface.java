@@ -9,6 +9,6 @@ public interface IteratorInterface extends Iterator{
 	public void initialize();
 	public Order elementAt(int i);
 	public boolean addOrder(Order order);
-	public boolean addOrder(Order order,int i);
+	public boolean addOrder(Order order,int i, double valorAnterior);
 	public boolean deleteOrder(int i);
 }
