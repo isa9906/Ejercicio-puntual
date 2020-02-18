@@ -12,10 +12,17 @@ import ePuntual.visitor.OrderVisitor;
 
 public class AllOrders implements IteratorInterface {
 	
-	private ArrayList<Order> ordenes;
+	public ArrayList<Order> ordenes;
 	private int apunta=0; //Apunta a la posición en donde se encuentra el siguiente (next)
 	private double total;
-	public AllOrders (){
+	
+	private static AllOrders instance = new AllOrders();
+	
+	public static AllOrders getInstance() {
+		return instance;
+	}
+	
+	private AllOrders (){
 		initialize();
 	}
 	
@@ -54,19 +61,26 @@ public class AllOrders implements IteratorInterface {
 	}
 
 	@Override
-	public boolean addOrder(Order order, int i) {
+	public boolean addOrder(Order order, int i, double valorAnterior) {
 		if(i>this.ordenes.size() || i<0) {
 			return false;
 		}
 		else {
-			this.ordenes.add(i, order);
+			this.ordenes.set(i, order);
+			//Si la orden ya estaba liquidada, 
+			//el valor de total de todas las ordenes debe ser recalculado
+			if(order.getValue()!=-1) {
+				order.accept(new OrderVisitor()); //se calcula de nuevo
+				//se resta el valor anterior y se suma el nuevo valor de la orden
+				this.total = this.total - valorAnterior + order.getValue(); 
+			}
 		}
 		return true;
 	}
 
 	@Override
 	public boolean deleteOrder(int i) {
-		if(i>this.ordenes.size() || i<0) {
+		if(i>this.ordenes.size()-1 || i<0) {
 			return false;
 		}
 		else {
@@ -76,12 +90,7 @@ public class AllOrders implements IteratorInterface {
 	}
 	
 	private void reorderArray(int i) {
-		int size = this.ordenes.size();
-		for(int j=i;j<size;i++) {
-			Order o = this.ordenes.get(j+1);
-			this.ordenes.add(j,o);
-		}
-		this.ordenes.remove(size-1);
+		this.ordenes.remove(i);
 	}
 	
 	public double getOrderTotal(OrderVisitor visitor) {
@@ -92,5 +101,13 @@ public class AllOrders implements IteratorInterface {
 		 }
 		 return total;
 	 }
+	
+	public double getOrderTotal() {
+		return total;
+	}
+	
+	public ArrayList<Order> getData(){
+		return this.ordenes;
+	}
 	
 }

@@ -9,6 +9,7 @@ public abstract class UIBuilder {
 	public abstract void addUIControls();
 	public abstract void initialize();
 	public abstract Order createOrder();
+	public abstract void cargarValores(String [] valores);
 	
 	public JPanel getOrderUI() {
 	    return orderUI;

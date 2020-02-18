@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /ButtonHandler.class
 /CaliforniaOrder.class
 /ColombianOrder.class
@@ -5,6 +6,11 @@
 /Order.class
 /OrderManager$1.class
 /OrderManager.class
+=======
+/CaliforniaOrder.class
+/NonCaliforniaOrder.class
+/Order.class
+>>>>>>> tocayo
 /OrderVisitor.class
 /OverseasOrder.class
 /VisitorInterface.class

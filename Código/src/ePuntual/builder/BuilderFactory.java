@@ -1,6 +1,6 @@
 package ePuntual.builder;
 
-import ePuntual.visitor.OrderManager;
+import ePuntual.presentacion.OrderManager;
 
 public class BuilderFactory {
 	

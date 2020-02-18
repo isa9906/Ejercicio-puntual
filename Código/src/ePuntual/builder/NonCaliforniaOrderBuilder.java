@@ -1,4 +1,5 @@
 package ePuntual.builder;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -45,12 +46,14 @@ public class NonCaliforniaOrderBuilder extends UIBuilder {
 	    gbc.gridy = 0;
 	    gridbag.setConstraints(txtOrderAmount, gbc);
 	    
+	    setPlacerHolders();
 	    
 	}
+	
 	public  void initialize() {
-		txtOrderAmount.setText("Enter Order Amount");
 		
 	}
+	
 	public String getTxtOrderAmount() {
 		return txtOrderAmount.getText();
 	}
@@ -61,5 +64,18 @@ public class NonCaliforniaOrderBuilder extends UIBuilder {
 		orden = new NonCaliforniaOrder(amount);
 		return orden;
 		
+	}
+	
+	@Override
+	public void cargarValores(String[] valores) {
+		txtOrderAmount.setText(valores[0]);
+	}
+	
+	private void setPlacerHolders() {
+		TextPrompt placeholder = new TextPrompt("Enter Order Amount", this.txtOrderAmount);
+	    placeholder.changeAlpha(0.75f);
+	    placeholder.changeStyle(Font.ITALIC);
+	    
+
 	}
 }

@@ -1,6 +1,9 @@
 /BuilderFactory.class
 /CaliforniaOrderBuilder.class
+<<<<<<< HEAD
 /ColombianOrderBuilder.class
+=======
+>>>>>>> tocayo
 /NonCaliforniaOrderBuilder.class
 /OverseasOrderBuilder.class
 /UIBuilder.class

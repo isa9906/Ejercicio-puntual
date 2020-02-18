@@ -1,4 +1,5 @@
 package ePuntual.builder;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -50,12 +51,14 @@ public class CaliforniaOrderBuilder extends UIBuilder {
 	    gbc.gridx = 1;
 	    gbc.gridy = 1;
 	    gridbag.setConstraints(txtTax, gbc);
-	    
+
+	    setPlacerHolders();
 	}
+	
 	public  void initialize() {
-		txtOrderAmount.setText("Enter Order Amount");
-		txtTax.setText("Enter Addition tax");
+		
 	}
+	
 	public String getTxtOrderAmount() {
 		return txtOrderAmount.getText();
 	}
@@ -63,6 +66,7 @@ public class CaliforniaOrderBuilder extends UIBuilder {
 	public String getTxtTax() {
 		return txtTax.getText();
 	}
+	
 	public Order createOrder() {
 		double amount = Double.parseDouble(getTxtOrderAmount());
 		double tax= Double.parseDouble(getTxtTax());
@@ -70,7 +74,23 @@ public class CaliforniaOrderBuilder extends UIBuilder {
 		return orden;
 		
 	}
+
+	@Override
+	public void cargarValores(String[] valores) {
+		txtOrderAmount.setText(valores[0]);
+		txtTax.setText(valores[1]);
+		
+	}
 	
+	private void setPlacerHolders() {
+		TextPrompt placeholder = new TextPrompt("Enter Order Amount", this.txtOrderAmount);
+	    placeholder.changeAlpha(0.75f);
+	    placeholder.changeStyle(Font.ITALIC);
+	    
+	    TextPrompt placeholder1 = new TextPrompt("Enter Addition tax", this.txtTax);
+	    placeholder1.changeAlpha(0.75f);
+	    placeholder1.changeStyle(Font.ITALIC);
+	}
 	
 	
 	
