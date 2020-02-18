@@ -34,7 +34,7 @@ public class Principal extends JFrame {
 	}
 
 	private void create() {
-		setTitle("Liquidación de órdenes");
+		setTitle("Settling of orders");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 403, 113);
 		contentPane = new JPanel();
@@ -42,20 +42,20 @@ public class Principal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnCrearNuevasOrdenes = new JButton("Crear nuevas ordenes");
+		JButton btnCrearNuevasOrdenes = new JButton("Create new orders");
 		btnCrearNuevasOrdenes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrame frame = new OrderManager();
 
 			    //frame.pack();
-			    frame.setSize(500, 400);
+			    
 			    frame.setVisible(true);
 			}
 		});
 		btnCrearNuevasOrdenes.setBounds(20, 25, 163, 32);
 		contentPane.add(btnCrearNuevasOrdenes);
 		
-		JButton btnModiicarUnaOrden = new JButton("Modificar una orden");
+		JButton btnModiicarUnaOrden = new JButton("Modify an order");
 		btnModiicarUnaOrden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame frame = new ModificarOrden();

@@ -1,4 +1,5 @@
 package ePuntual.builder;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -54,11 +55,13 @@ public class OverseasOrderBuilder extends UIBuilder {
 	    gbc.gridy = 1;
 	    gridbag.setConstraints(txtSH, gbc);
 	    
+	    setPlacerHolders();
 	}
+	
 	public  void initialize() {
-		txtOrderAmount.setText("Enter Order Amount");
-		txtSH.setText("Enter Addition SH");
+		
 	}
+	
 	public String getTxtOrderAmount() {
 		return txtOrderAmount.getText();
 	}
@@ -66,11 +69,29 @@ public class OverseasOrderBuilder extends UIBuilder {
 	public String getTxtSH() {
 		return txtSH.getText();
 	}
+	
 	public Order createOrder() {
 		double amount = Double.parseDouble(getTxtOrderAmount());
 		double sh= Double.parseDouble(getTxtSH());
 		orden = new OverseasOrder(amount, sh);
 		return orden;
 		
+	}
+	
+	@Override
+	public void cargarValores(String[] valores) {
+		txtOrderAmount.setText(valores[0]);
+		txtSH.setText(valores[1]);
+		
+	}
+	
+	private void setPlacerHolders() {
+		TextPrompt placeholder = new TextPrompt("Enter Order Amount", this.txtOrderAmount);
+	    placeholder.changeAlpha(0.75f);
+	    placeholder.changeStyle(Font.ITALIC);
+	    
+	    TextPrompt placeholder1 = new TextPrompt("Enter Addition SH", this.txtSH);
+	    placeholder1.changeAlpha(0.75f);
+	    placeholder1.changeStyle(Font.ITALIC);
 	}
 }

@@ -25,4 +25,14 @@ public class OverseasOrder extends Order {
   public void accept(OrderVisitor v) {
     v.visit(this);
   }
+	@Override
+	public String[] getValues() {
+		String[] valores = {Double.toString(this.orderAmount),Double.toString(this.additionalSH)};
+		return valores;
+	}
+	@Override
+	public void setValues(String[] values) {
+		this.orderAmount = Double.parseDouble(values[0]);
+		this.additionalSH = Double.parseDouble(values[1]);
+	}
 }

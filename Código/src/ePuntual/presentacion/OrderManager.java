@@ -1,11 +1,8 @@
 package ePuntual.presentacion;
-import java.util.*;
-import java.io.*;
-import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import com.sun.java.swing.plaf.windows.*;
+
 
 import ePuntual.builder.BuilderFactory;
 import ePuntual.builder.UIBuilder;
@@ -13,7 +10,7 @@ import ePuntual.builder.UIDirector;
 import ePuntual.iterator.AllOrders;
 import ePuntual.visitor.Order;
 import ePuntual.visitor.OrderVisitor;
-import jdk.nashorn.internal.runtime.ListAdapter;
+
 
 public class OrderManager extends JFrame {
   public static final String newline = "\n";
@@ -36,7 +33,7 @@ public class OrderManager extends JFrame {
   
   
   public OrderManager() {
-    super("Visitor Pattern - Example");
+    super("Create an order");
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     //Create the visitor instance
@@ -60,18 +57,13 @@ public class OrderManager extends JFrame {
   	      new JLabel("Order Criteria:");
     
     //Create the open button
-    JButton getTotalButton =
-      new JButton(OrderManager.GET_TOTAL);
-    getTotalButton.setMnemonic(KeyEvent.VK_G);
     JButton createOrderButton =
       new JButton(OrderManager.CREATE_ORDER);
-    getTotalButton.setMnemonic(KeyEvent.VK_C);
     JButton exitButton = new JButton(OrderManager.EXIT);
     exitButton.setMnemonic(KeyEvent.VK_X);
     ButtonHandler objButtonHandler = new ButtonHandler(this);
     
 
-    getTotalButton.addActionListener(objButtonHandler);
     createOrderButton.addActionListener(objButtonHandler);
     exitButton.addActionListener(new ButtonHandler());
     cmbOrderType.addActionListener(objButtonHandler);
@@ -83,7 +75,6 @@ public class OrderManager extends JFrame {
     GridBagLayout gridbag2 = new GridBagLayout();
     panel.setLayout(gridbag2);
     GridBagConstraints gbc2 = new GridBagConstraints();
-    panel.add(getTotalButton);
     panel.add(createOrderButton);
     panel.add(exitButton);
     gbc2.anchor = GridBagConstraints.EAST;
@@ -92,7 +83,6 @@ public class OrderManager extends JFrame {
     gridbag2.setConstraints(createOrderButton, gbc2);
     gbc2.gridx = 1;
     gbc2.gridy = 0;
-    gridbag2.setConstraints(getTotalButton, gbc2);
     gbc2.gridx = 2;
     gbc2.gridy = 0;
     gridbag2.setConstraints(exitButton, gbc2);
@@ -175,7 +165,7 @@ public class OrderManager extends JFrame {
     }*/
     
     setLocationRelativeTo(null);
-
+    setSize(500, 400);
   }
 
 
@@ -192,11 +182,17 @@ public class OrderManager extends JFrame {
 	    return cmbOrderType;
   }
 
-  public void displayNewUI(JPanel panel) {
+  void displayNewUI(JPanel panel) {
 	   orderCriteria.removeAll();
 	   orderCriteria.add(panel);
 	   orderCriteria.validate();
 	   validate();
+  }
+  
+  void reload() {
+	  dispose();
+	  OrderManager x = new OrderManager();
+	  x.setVisible(true);
   }
 
 
@@ -236,17 +232,12 @@ class ButtonHandler implements ActionListener {
 	      //Create the order
 	      Order order = builder.createOrder();    
 	      iterador.addOrder(order);
-	      objOrderManager.setTotalValue("Order Created Successfully");
-	    }
-	
-	    if (e.getActionCommand().equals(OrderManager.GET_TOTAL)) {
-	      //Get the Visitor
-	      OrderVisitor visitor = objOrderManager.getOrderVisitor();
-	      totalResult = new Double(iterador.getOrderTotal(visitor)).toString();
-	      totalResult = " Orders Total = " + totalResult;
-	      objOrderManager.setTotalValue(totalResult);
-	    }
-	    
+	      JOptionPane.showMessageDialog(null, "Order created successfully");
+	      
+	      //Nueva ejemplificación de la ventana
+	      objOrderManager.reload();
+	      
+	    }    
 	  }
 	
 	  public ButtonHandler() {

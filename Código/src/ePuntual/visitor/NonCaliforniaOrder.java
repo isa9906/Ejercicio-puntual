@@ -18,4 +18,14 @@ public class NonCaliforniaOrder extends Order {
   public void accept(OrderVisitor v) {
     v.visit(this);
   }
+	@Override
+	public String[] getValues() {
+		String[] valores = {Double.toString(this.orderAmount)};
+		return valores;
+	}
+	@Override
+	public void setValues(String[] values) {
+		this.orderAmount = Double.parseDouble(values[0]);
+		
+	}
 }

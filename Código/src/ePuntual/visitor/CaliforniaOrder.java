@@ -26,5 +26,15 @@ public class CaliforniaOrder extends Order {
 	  public void accept(OrderVisitor v) {
 	    v.visit(this);
 	  }
+	@Override
+	public String[] getValues() {
+		String[] valores = {Double.toString(this.orderAmount),Double.toString(this.additionalTax)};
+		return valores;
+	}
+	@Override
+	public void setValues(String[] values) {
+		this.orderAmount = Double.parseDouble(values[0]);
+		this.additionalTax = Double.parseDouble(values[1]);
+	}
 }
 
