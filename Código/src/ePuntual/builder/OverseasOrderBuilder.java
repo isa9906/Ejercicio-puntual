@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -71,11 +72,17 @@ public class OverseasOrderBuilder extends UIBuilder {
 	}
 	
 	public Order createOrder() {
-		double amount = Double.parseDouble(getTxtOrderAmount());
-		double sh= Double.parseDouble(getTxtSH());
-		orden = new OverseasOrder(amount, sh);
-		return orden;
-		
+		double amount;
+		double sh;
+		try {
+			amount = Double.parseDouble(getTxtOrderAmount());
+			sh= Double.parseDouble(getTxtSH());
+			orden = new OverseasOrder(amount, sh);
+			return orden;
+		}catch(NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Error, verify data");
+			return null;
+		}	
 	}
 	
 	@Override

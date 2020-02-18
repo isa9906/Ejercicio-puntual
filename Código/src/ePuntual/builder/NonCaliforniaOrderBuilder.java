@@ -4,9 +4,11 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ePuntual.visitor.CaliforniaOrder;
 import ePuntual.visitor.NonCaliforniaOrder;
 import ePuntual.visitor.Order;
 
@@ -60,10 +62,17 @@ public class NonCaliforniaOrderBuilder extends UIBuilder {
 	
 	@Override
 	public Order createOrder() {
-		double amount = Double.parseDouble(getTxtOrderAmount());
-		orden = new NonCaliforniaOrder(amount);
-		return orden;
-		
+		double amount;
+	
+		try {
+			amount = Double.parseDouble(getTxtOrderAmount());
+			
+			orden = new NonCaliforniaOrder(amount);
+			return orden;
+		}catch(NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Error, verify data");
+			return null;
+		}
 	}
 	
 	@Override

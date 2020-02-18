@@ -231,9 +231,14 @@ class ButtonHandler implements ActionListener {
 	    if (e.getActionCommand().equals(OrderManager.CREATE_ORDER)) { 
 	      
 	      //Create the order
-	      Order order = builder.createOrder();    
-	      iterador.addOrder(order);
-	      JOptionPane.showMessageDialog(null, "Order created successfully");
+	      Order order = builder.createOrder();
+	      if(order!=null){
+	    	  iterador.addOrder(order);
+		      JOptionPane.showMessageDialog(null, "Order created successfully");
+	      }
+	      else {
+	    	  JOptionPane.showMessageDialog(null, "Order couldn't be created");
+	      }
 	      
 	      //Nueva ejemplificación de la ventana
 	      objOrderManager.reload();

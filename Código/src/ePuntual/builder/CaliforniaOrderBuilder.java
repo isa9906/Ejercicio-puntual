@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import javax.swing.*;
 
 import ePuntual.visitor.CaliforniaOrder;
+import ePuntual.visitor.ColombianOrder;
 import ePuntual.visitor.Order;
 
 public class CaliforniaOrderBuilder extends UIBuilder {
@@ -68,11 +69,17 @@ public class CaliforniaOrderBuilder extends UIBuilder {
 	}
 	
 	public Order createOrder() {
-		double amount = Double.parseDouble(getTxtOrderAmount());
-		double tax= Double.parseDouble(getTxtTax());
-		orden = new CaliforniaOrder(amount, tax);
-		return orden;
-		
+		double amount;
+		double tax;		
+		try {
+			amount = Double.parseDouble(getTxtOrderAmount());
+			tax= Double.parseDouble(getTxtTax());
+			orden = new CaliforniaOrder(amount, tax);
+			return orden;
+		}catch(NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Error, verify data");
+			return null;
+		}
 	}
 
 	@Override

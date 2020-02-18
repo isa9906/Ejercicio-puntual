@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -68,10 +69,19 @@ public class ColombianOrderBuilder extends UIBuilder {
 		return txtCuatroPorMil.getText();
 	}
 	public Order createOrder() {
-		double amount = Double.parseDouble(getTxtOrderAmount());
-		double tax= Double.parseDouble(getTxtCuatroPorMil());
-		orden = new ColombianOrder(amount, tax);
-		return orden;
+		double amount;
+		double tax;
+		try {
+			amount = Double.parseDouble(getTxtOrderAmount());
+			tax= Double.parseDouble(getTxtCuatroPorMil());
+			orden = new ColombianOrder(amount, tax);
+			return orden;
+		}catch(NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Error, verify data");
+			return null;
+		}
+		
+		
 		
 	}
 	@Override
