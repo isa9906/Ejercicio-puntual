@@ -91,7 +91,7 @@ public class ColombianOrderBuilder extends UIBuilder {
 		
 	}
 	
-	private void setPlacerHolders() {
+	protected void setPlacerHolders() {
 		TextPrompt placeholder = new TextPrompt("Enter Order Amount", this.txtOrderAmount);
 	    placeholder.changeAlpha(0.75f);
 	    placeholder.changeStyle(Font.ITALIC);

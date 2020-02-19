@@ -55,10 +55,6 @@ public class CaliforniaOrderBuilder extends UIBuilder {
 	    setPlacerHolders();
 	}
 	
-	public  void initialize() {
-		
-	}
-	
 	public String getTxtOrderAmount() {
 		return txtOrderAmount.getText();
 	}
@@ -88,7 +84,7 @@ public class CaliforniaOrderBuilder extends UIBuilder {
 		
 	}
 	
-	private void setPlacerHolders() {
+	protected void setPlacerHolders() {
 		TextPrompt placeholder = new TextPrompt("Enter Order Amount", this.txtOrderAmount);
 	    placeholder.changeAlpha(0.75f);
 	    placeholder.changeStyle(Font.ITALIC);
@@ -97,6 +93,8 @@ public class CaliforniaOrderBuilder extends UIBuilder {
 	    placeholder1.changeAlpha(0.75f);
 	    placeholder1.changeStyle(Font.ITALIC);
 	}
+
+	
 	
 	
 	

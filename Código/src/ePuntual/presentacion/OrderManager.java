@@ -28,7 +28,7 @@ public class OrderManager extends JFrame {
 
   private JComboBox cmbOrderType;
   private JLabel lblOrderType;
-  private JLabel lblTotal, lblTotalValue, lblOrderCriteria;
+  private JLabel lblOrderCriteria;
   private OrderVisitor objVisitor;
   private JPanel orderCriteria;
   
@@ -51,9 +51,7 @@ public class OrderManager extends JFrame {
 
 
     lblOrderType = new JLabel("Order Type:");
-    lblTotal = new JLabel("Result:");
-    lblTotalValue =
-      new JLabel("Click Create or GetTotal Button");
+    
     lblOrderCriteria =
   	      new JLabel("Order Criteria:");
     
@@ -97,8 +95,7 @@ public class OrderManager extends JFrame {
     buttonPanel.add(cmbOrderType);
     buttonPanel.add(lblOrderCriteria);
     buttonPanel.add(orderCriteria);
-    buttonPanel.add(lblTotal);
-    buttonPanel.add(lblTotalValue);
+   
 
     gbc.insets.top = 5;
     gbc.insets.bottom = 5;
@@ -141,11 +138,7 @@ public class OrderManager extends JFrame {
     gbc.anchor = GridBagConstraints.EAST;
     gbc.gridx = 0;
     gbc.gridy = 4;
-    gridbag.setConstraints(lblTotal, gbc);
-    gbc.anchor = GridBagConstraints.WEST;
-    gbc.gridx = 1;
-    gbc.gridy = 4;
-    gridbag.setConstraints(lblTotalValue, gbc);
+  
 
     gbc.insets.left = 2;
     gbc.insets.right = 2;
@@ -170,9 +163,7 @@ public class OrderManager extends JFrame {
   }
 
 
-  public void setTotalValue(String msg) {
-    lblTotalValue.setText(msg);
-  }
+ 
   public OrderVisitor getOrderVisitor() {
     return objVisitor;
   }

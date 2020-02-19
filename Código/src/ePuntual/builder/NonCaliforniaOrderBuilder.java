@@ -51,10 +51,6 @@ public class NonCaliforniaOrderBuilder extends UIBuilder {
 	    
 	}
 	
-	public  void initialize() {
-		
-	}
-	
 	public String getTxtOrderAmount() {
 		return txtOrderAmount.getText();
 	}
@@ -79,7 +75,7 @@ public class NonCaliforniaOrderBuilder extends UIBuilder {
 		txtOrderAmount.setText(valores[0]);
 	}
 	
-	private void setPlacerHolders() {
+	protected void setPlacerHolders() {
 		TextPrompt placeholder = new TextPrompt("Enter Order Amount", this.txtOrderAmount);
 	    placeholder.changeAlpha(0.75f);
 	    placeholder.changeStyle(Font.ITALIC);

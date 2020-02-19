@@ -7,7 +7,7 @@ public class UIDirector {
   }
   public void build() {
     builder.addUIControls();
-    builder.initialize();
+
   }
 
 }
