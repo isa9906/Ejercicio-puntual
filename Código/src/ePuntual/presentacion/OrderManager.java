@@ -205,7 +205,6 @@ class ButtonHandler implements ActionListener {
 	AllOrders iterador = AllOrders.getInstance();
   
 	public void actionPerformed(ActionEvent e) {
-		String totalResult = null;
 
 		if (e.getActionCommand().equals(OrderManager.EXIT)) {
 	      System.exit(1);
@@ -240,7 +239,7 @@ class ButtonHandler implements ActionListener {
 	    	  JOptionPane.showMessageDialog(null, "Order couldn't be created");
 	      }
 	      
-	      //Nueva ejemplificación de la ventana
+	      //Nueva ejemplificaciï¿½n de la ventana
 	      objOrderManager.reload();
 	      
 	    }    

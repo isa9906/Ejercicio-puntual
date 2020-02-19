@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import javax.swing.*;
 
 import ePuntual.visitor.CaliforniaOrder;
-import ePuntual.visitor.ColombianOrder;
 import ePuntual.visitor.Order;
 
 public class CaliforniaOrderBuilder extends UIBuilder {

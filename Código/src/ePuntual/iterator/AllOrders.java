@@ -1,11 +1,6 @@
 package ePuntual.iterator;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.StringTokenizer;
-import java.util.Vector;
+
 
 import ePuntual.visitor.Order;
 import ePuntual.visitor.OrderVisitor;
@@ -13,7 +8,7 @@ import ePuntual.visitor.OrderVisitor;
 public class AllOrders implements IteratorInterface {
 	
 	public ArrayList<Order> ordenes;
-	private int apunta=0; //Apunta a la posición en donde se encuentra el siguiente (next)
+	private int apunta=0; //Apunta a la posiciï¿½n en donde se encuentra el siguiente (next)
 	private double total;
 	
 	private static AllOrders instance = new AllOrders();
@@ -84,13 +79,9 @@ public class AllOrders implements IteratorInterface {
 			return false;
 		}
 		else {
-			reorderArray(i);
+			this.ordenes.remove(i);
 		}
 		return true;
-	}
-	
-	private void reorderArray(int i) {
-		this.ordenes.remove(i);
 	}
 	
 	public double getOrderTotal(OrderVisitor visitor) {

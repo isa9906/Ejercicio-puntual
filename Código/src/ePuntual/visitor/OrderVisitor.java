@@ -1,7 +1,4 @@
 package ePuntual.visitor;
-import java.util.*;
-
-import ePuntual.iterator.AllOrders;
 
 public class OrderVisitor implements VisitorInterface {
 
