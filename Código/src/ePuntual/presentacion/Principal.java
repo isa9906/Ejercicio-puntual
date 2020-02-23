@@ -28,7 +28,7 @@ public class Principal extends JFrame {
 	private void create() {
 		setTitle("Settling of orders");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 403, 113);
+		setBounds(300, 100, 403, 150);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -58,6 +58,19 @@ public class Principal extends JFrame {
 		});
 		btnModiicarUnaOrden.setBounds(209, 25, 168, 32);
 		contentPane.add(btnModiicarUnaOrden);
+		
+		JButton btnSalir = new JButton("Exit");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				System.exit(1);
+			   
+			   
+			}
+		});
+		//btnSalir.setBounds(209, 25, 168, 32);
+		btnSalir.setBounds(100, 70, 168, 32);
+		contentPane.add(btnSalir);
 		
 		setLocationRelativeTo(null);
 		

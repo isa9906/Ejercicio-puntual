@@ -12,7 +12,7 @@ public class OverseasOrder extends Order {
   public OverseasOrder(double inp_orderAmount,
       double inp_additionalSH) {
 	  this.type = OrderManager.OVERSEAS_ORDER;
-	  System.out.print(this.type);
+	  //System.out.print(this.type);
     orderAmount = inp_orderAmount;
     additionalSH = inp_additionalSH;
   }

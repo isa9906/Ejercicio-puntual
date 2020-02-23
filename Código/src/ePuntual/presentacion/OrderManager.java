@@ -58,13 +58,12 @@ public class OrderManager extends JFrame {
     //Create the open button
     JButton createOrderButton =
       new JButton(OrderManager.CREATE_ORDER);
-    JButton exitButton = new JButton(OrderManager.EXIT);
-    exitButton.setMnemonic(KeyEvent.VK_X);
+    
     ButtonHandler objButtonHandler = new ButtonHandler(this);
     
 
     createOrderButton.addActionListener(objButtonHandler);
-    exitButton.addActionListener(new ButtonHandler());
+    
     cmbOrderType.addActionListener(objButtonHandler);
 
     //For layout purposes, put the buttons in a separate panel
@@ -75,7 +74,7 @@ public class OrderManager extends JFrame {
     panel.setLayout(gridbag2);
     GridBagConstraints gbc2 = new GridBagConstraints();
     panel.add(createOrderButton);
-    panel.add(exitButton);
+   
     gbc2.anchor = GridBagConstraints.EAST;
     gbc2.gridx = 0;
     gbc2.gridy = 0;
@@ -84,7 +83,7 @@ public class OrderManager extends JFrame {
     gbc2.gridy = 0;
     gbc2.gridx = 2;
     gbc2.gridy = 0;
-    gridbag2.setConstraints(exitButton, gbc2);
+    
 
     //****************************************************
     GridBagLayout gridbag = new GridBagLayout();
@@ -197,9 +196,7 @@ class ButtonHandler implements ActionListener {
   
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getActionCommand().equals(OrderManager.EXIT)) {
-	      System.exit(1);
-	    }
+		
 	    if (e.getSource() == objOrderManager.getOrderTypeCtrl()) {
 	    	//System.out.println("funciona");
 	        String selection = objOrderManager.getOrderType();
