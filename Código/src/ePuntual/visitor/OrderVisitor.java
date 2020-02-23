@@ -6,7 +6,7 @@ public class OrderVisitor implements VisitorInterface {
 	  
   }
   public void visit(NonCaliforniaOrder inp_order) {
-	  inp_order.setValue(inp_order.getOrderAmount()); ;
+	  inp_order.setValue(inp_order.getOrderAmount());
   }
   public void visit(CaliforniaOrder inp_order) {
 	  inp_order.setValue(inp_order.getOrderAmount() + inp_order.getAdditionalTax());
