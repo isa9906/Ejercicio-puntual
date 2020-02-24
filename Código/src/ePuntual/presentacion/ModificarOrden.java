@@ -56,12 +56,7 @@ public class ModificarOrden extends JFrame {
 		
 		orderTable = new JTable(model);
 		orderTable.setBounds(33, 65, 144, 143);
-		orderTable.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				cargarOrden();
-			}
-		});
+		orderTable.addMouseListener(new MouseAdapter() {public void mouseClicked(MouseEvent e) {cargarOrden();}});
 				
 		
 		
@@ -73,11 +68,7 @@ public class ModificarOrden extends JFrame {
 		contentPane.add(scrollPane);
 		
 		btnActualizar = new JButton("Update");
-		btnActualizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cargarOrdenes();
-			}
-		});
+		btnActualizar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {cargarOrdenes();}});
 		btnActualizar.setBounds(439, 11, 106, 36);
 		contentPane.add(btnActualizar);
 		
@@ -86,11 +77,7 @@ public class ModificarOrden extends JFrame {
 		contentPane.add(orderPanel);
 		
 		JButton btnModificar = new JButton("Modify order");
-		btnModificar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				submitOrder();
-			}
-		});
+		btnModificar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {submitOrder();}});
 		btnModificar.setBounds(609, 164, 123, 36);
 		contentPane.add(btnModificar);
 		
@@ -103,16 +90,12 @@ public class ModificarOrden extends JFrame {
 		btnEliminarOrden.setBounds(755, 164, 123, 36);
 		contentPane.add(btnEliminarOrden);
 		
-		lblTotal = new JLabel("New label");
+		lblTotal = new JLabel("");
 		lblTotal.setBounds(15, 228, 327, 27);
 		contentPane.add(lblTotal);
 		
 		btnGetTotal = new JButton("Calculate Total");
-		btnGetTotal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				getTotal();
-			}
-		});
+		btnGetTotal.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {getTotal();}});
 		btnGetTotal.setBounds(439, 223, 123, 36);
 		contentPane.add(btnGetTotal);
 		
@@ -123,7 +106,8 @@ public class ModificarOrden extends JFrame {
 	
 	private void cargarOrdenes() {
 		reiniciarModelo();
-		ArrayList<Order> ordenes = AllOrders.getInstance().ordenes;
+		AllOrders iterator = AllOrders.getInstance();
+		ArrayList<Order> ordenes = iterator.getOrdenes();
 		int size = ordenes.size();
 		for(int i=0;i<size;i++) {
 			Order order = ordenes.get(i);
@@ -138,7 +122,8 @@ public class ModificarOrden extends JFrame {
 		}
 		
 		//Total ordenes
-		lblTotal.setText("Total: "+AllOrders.getInstance().getOrderTotal());
+		
+		lblTotal.setText("Total: "+ iterator.getOrderTotal());
 	}
 	
 	private void reiniciarModelo() {
@@ -233,7 +218,8 @@ public class ModificarOrden extends JFrame {
 	}
 	
 	private void getTotal() {
-		AllOrders.getInstance().getOrderTotal(new OrderVisitor());
+		AllOrders iterator = AllOrders.getInstance();
+		iterator.getOrderTotal(new OrderVisitor());
 		cargarOrdenes();
 	}
 }

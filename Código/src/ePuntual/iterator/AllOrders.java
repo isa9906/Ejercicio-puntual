@@ -7,7 +7,7 @@ import ePuntual.visitor.OrderVisitor;
 
 public class AllOrders implements IteratorInterface {
 	
-	public ArrayList<Order> ordenes;
+	private ArrayList<Order> ordenes;
 	private int apunta=0; //Apunta a la posici�n en donde se encuentra el siguiente (next)
 	private double total;
 	
@@ -19,6 +19,10 @@ public class AllOrders implements IteratorInterface {
 	
 	private AllOrders (){
 		initialize();
+	}
+	
+	public ArrayList<Order> getOrdenes(){
+		return this.ordenes;
 	}
 	
 	@Override
