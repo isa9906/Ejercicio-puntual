@@ -192,7 +192,7 @@ public class OrderManager extends JFrame {
 class ButtonHandler implements ActionListener {
 	OrderManager objOrderManager;
 	UIBuilder builder;
-	AllOrders iterador = AllOrders.getInstance();
+	AllOrders iterador;
   
 	public void actionPerformed(ActionEvent e) {
 
@@ -237,6 +237,7 @@ class ButtonHandler implements ActionListener {
 	  }
 	  
 	  public ButtonHandler(OrderManager inObjOrderManager) {
+		iterador = AllOrders.getInstance();
 	    objOrderManager = inObjOrderManager;
 	  }
 

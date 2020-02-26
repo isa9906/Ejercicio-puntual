@@ -177,11 +177,12 @@ public class ModificarOrden extends JFrame {
 					value = -1;
 				}
 				
+				AllOrders iterador = AllOrders.getInstance();
 				
 				Order order = this.builder.createOrder();
 				order.setValue(value);
 				
-				AllOrders iterador = AllOrders.getInstance();
+				
 				iterador.addOrder(order, orderID-1,value);
 				
 				JOptionPane.showMessageDialog(null, "Orden modified successfully");
